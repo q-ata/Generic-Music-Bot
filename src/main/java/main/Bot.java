@@ -9,6 +9,7 @@ import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 
 import commands.Play;
 import commands.Queue;
+import commands.Skip;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import structure.Command;
@@ -26,6 +27,7 @@ public class Bot {
 	  
 	  commands.put("play", new Play(bot));
 	  commands.put("queue", new Queue(bot));
+	  commands.put("skip", new Skip(bot));
 	  
 	  bot.addEventListener(new MessageListener(bot));
 	    

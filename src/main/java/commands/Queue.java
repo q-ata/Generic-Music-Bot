@@ -18,7 +18,13 @@ public class Queue extends Command {
 
   public void run(Msg msg) {
     
-    GuildPlayerInfo info = Bot.getPlayers().get(msg.getGuild().getId()).getTrackScheduler().getInfo();
+    GuildPlayerInfo info;
+    
+    if (!Bot.getPlayers().containsKey(msg.getGuild().getId()) || (info = Bot.getPlayers().get(msg.getGuild().getId()).getTrackScheduler().getInfo()).getQueue().size() == 0) {
+      msg.getTextChannel().sendMessage("There are currently no songs queued.").queue();
+      return;
+    }
+    
     AudioTrack currentSong = info.getQueue().get(0);
     String progress = convertMilliseconds(currentSong.getPosition()) + "/" + convertMilliseconds(currentSong.getDuration());
     String[] songs = new String[info.getQueue().size()];

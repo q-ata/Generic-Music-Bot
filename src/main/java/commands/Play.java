@@ -21,6 +21,7 @@ public class Play extends Command {
   }
   
   public void run(Msg msg) {
+    
     final VoiceChannel memberChannel = msg.getMember().getVoiceState().getChannel();
     if (memberChannel == null) {
       msg.getTextChannel().sendMessage("🎵 You must be in a voice channel to use this command!").queue();
@@ -61,7 +62,7 @@ public class Play extends Command {
 
       @Override
       public void noMatches() {
-        msg.getTextChannel().sendMessage("🎵 No matches for the request song were found.").queue();
+        msg.getTextChannel().sendMessage("🎵 No matches for the requested song were found.").queue();
         
       }
 

@@ -13,15 +13,15 @@ public class GuildPlayerInfo {
   private ArrayList<AudioTrack> queue = new ArrayList<AudioTrack>();
   
   public GuildPlayerInfo(Msg msg) {
-    this.musicTextChannel = msg.getMessage().getTextChannel();
-    this.musicVoiceChannel = msg.getMessage().getMember().getVoiceState().getChannel();
+    this.setMusicTextChannel(msg.getMessage().getTextChannel());
+    this.setMusicVoiceChannel(msg.getMessage().getMember().getVoiceState().getChannel());
   }
 
   public TextChannel getMusicTextChannel() {
     return musicTextChannel;
   }
 
-  public void setMusicChannel(TextChannel musicTextChannel) {
+  public void setMusicTextChannel(TextChannel musicTextChannel) {
     this.musicTextChannel = musicTextChannel;
   }
 
@@ -35,10 +35,6 @@ public class GuildPlayerInfo {
 
   public ArrayList<AudioTrack> getQueue() {
     return queue;
-  }
-
-  public void setQueue(ArrayList<AudioTrack> queue) {
-    this.queue = queue;
   }
   
 }

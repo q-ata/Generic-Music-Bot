@@ -19,7 +19,7 @@ public class Msg extends MessageReceivedEvent {
     final String[] WORDS = content.split(" ");
     this.setParams(Arrays.copyOfRange(WORDS, 1, WORDS.length));
     if (Bot.getPlayers().containsKey(msg.getGuild().getId())) {
-      this.info = Bot.getPlayers().get(msg.getGuild().getId()).getTrackScheduler().getInfo();
+      this.setInfo(Bot.getPlayers().get(msg.getGuild().getId()).getTrackScheduler().getInfo());
     }
   }
 

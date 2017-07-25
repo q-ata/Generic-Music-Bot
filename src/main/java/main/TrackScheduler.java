@@ -24,22 +24,18 @@ public class TrackScheduler extends AudioEventAdapter {
 	  info.getQueue().add(track);
   }
 	
-  @Override
   public void onPlayerPause(AudioPlayer player) {
     // Player was paused
   }
 
-  @Override
   public void onPlayerResume(AudioPlayer player) {
     // Player was resumed
   }
 
-  @Override
   public void onTrackStart(AudioPlayer player, AudioTrack track) {
     info.getMusicTextChannel().sendMessage("Now playing **" + track.getInfo().title + "** in **" + info.getMusicVoiceChannel().getName() + "**").queue();
   }
 
-  @Override
   public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
     if (endReason.mayStartNext) {
       info.getQueue().remove(0);
@@ -62,12 +58,10 @@ public class TrackScheduler extends AudioEventAdapter {
     //                       clone of this back to your queue
   }
 
-  @Override
   public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
     info.getMusicTextChannel().sendMessage("Something went wrong with the current song, so it was skipped.").queue();
   }
 
-  @Override
   public void onTrackStuck(AudioPlayer player, AudioTrack track, long thresholdMs) {
     info.getQueue().remove(0);
     this.player.playTrack(info.getQueue().get(0));

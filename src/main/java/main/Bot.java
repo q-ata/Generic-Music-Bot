@@ -7,9 +7,12 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 
+import commands.Pause;
 import commands.Play;
 import commands.Queue;
+import commands.Resume;
 import commands.Skip;
+import commands.Summon;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import structure.Command;
@@ -28,6 +31,9 @@ public class Bot {
 	  commands.put("play", new Play(bot));
 	  commands.put("queue", new Queue(bot));
 	  commands.put("skip", new Skip(bot));
+	  commands.put("pause", new Pause(bot));
+	  commands.put("resume", new Resume(bot));
+	  commands.put("summon", new Summon(bot));
 	  
 	  bot.addEventListener(new MessageListener(bot));
 	    

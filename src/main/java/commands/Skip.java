@@ -26,7 +26,6 @@ public class Skip extends Command {
     
     msg.getTextChannel().sendMessage("The song **" + song.getInfo().title + "** was skipped!").queue();
     player.getPlayer().stopTrack();
-    // song.stop();
   }
 
 }

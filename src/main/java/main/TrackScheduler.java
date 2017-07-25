@@ -50,6 +50,9 @@ public class TrackScheduler extends AudioEventAdapter {
         info.getMusicVoiceChannel().getGuild().getAudioManager().closeAudioConnection();
       }
     }
+    else {
+      info.getMusicVoiceChannel().getGuild().getAudioManager().closeAudioConnection();
+    }
 
     // endReason == FINISHED: A track finished or died by an exception (mayStartNext = true).
     // endReason == LOAD_FAILED: Loading of a track failed (mayStartNext = true).

@@ -1,4 +1,5 @@
 package commands;
+
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
@@ -31,6 +32,7 @@ public class Play extends Command {
     AudioPlayer player;
     AudioPlayerSendHandler sendHandler;
     TrackScheduler trackScheduler;
+    String query;
     
     if (Bot.getPlayers().containsKey(msg.getGuild().getId())) {
       sendHandler = Bot.getPlayers().get(msg.getGuild().getId());
@@ -45,29 +47,37 @@ public class Play extends Command {
       Bot.getPlayers().put(msg.getGuild().getId(), sendHandler);
     }
     
+    if (msg.getParams().length == 1) {
+      query = msg.getParams()[0];
+    }
+    else {
+      query = "ytsearch:" + String.join(" ", msg.getParams());
+    }
+    
     msg.getGuild().getAudioManager().openAudioConnection(memberChannel);
     msg.getGuild().getAudioManager().setSendingHandler(sendHandler);
-    Bot.getPlayerManager().loadItem(msg.getParams()[0], new AudioLoadResultHandler() {
+    Bot.getPlayerManager().loadItem(query, new AudioLoadResultHandler() {
 
-      @Override
       public void trackLoaded(AudioTrack track) {
+        
         trackScheduler.play(track);
-      }
-
-      @Override
-      public void playlistLoaded(AudioPlaylist playlist) {
-        msg.getTextChannel().sendMessage("Playlists are not supported yet.").queue();
         
       }
 
-      @Override
+      public void playlistLoaded(AudioPlaylist playlist) {
+        
+        trackScheduler.play(playlist.getTracks().get(0));
+        
+      }
+
       public void noMatches() {
+        
         msg.getTextChannel().sendMessage("No matches for the requested song were found.").queue();
         
       }
 
-      @Override
       public void loadFailed(FriendlyException exception) {
+        
         System.out.println(exception);
         
       }

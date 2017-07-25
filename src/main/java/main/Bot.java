@@ -26,7 +26,7 @@ public class Bot {
 
 	public static void main(String[] arguments) throws Exception {
 	  
-	  JDA bot = new JDABuilder(AccountType.BOT).setToken(Constants.TOKEN).buildBlocking();
+	  JDA bot = new JDABuilder(AccountType.BOT).setToken(Constants.TOKEN).addEventListener(new ReadyListener()).buildBlocking();
 	  
 	  commands.put("play", new Play(bot));
 	  commands.put("queue", new Queue(bot));

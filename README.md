@@ -1,4 +1,3 @@
-# Generic-Music-Bot 
 # Generic Discord Music Bot 
  
 A generic music bot for Discord. Made with JDA and Lavaplayer as my first Java project in an attempt to learn the language. 
@@ -13,8 +12,11 @@ Edit src/main/java/main/Constants.java to customize your bot token and prefix.
 package main; 
  
 public class Constants { 
+
   public static final String TOKEN = "<MY BOT TOKEN HERE>"; 
+
   public static final String PREFIX = "<MY PREFIX HERE>"; 
+
 } 
 ``` 
  
@@ -28,6 +30,7 @@ public class Constants {
 ``` 
 play - Play music in your current voice channel from a URL. [play <URL>] 
 queue - View the current songs queue. [queue] 
+skip - Skip the current song. [skip]
 ``` 
  
 ## Authors 

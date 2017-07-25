@@ -24,7 +24,7 @@ public class Queue extends Command {
     AudioTrack currentSong = msg.getInfo().getQueue().get(0);
     String progress = convertMilliseconds(currentSong.getPosition()) + "/" + convertMilliseconds(currentSong.getDuration());
     String[] songs = new String[msg.getInfo().getQueue().size()];
-    songs[0] = "🎵 Now playing: **" + currentSong.getInfo().title + "** (" + progress + ")\n";
+    songs[0] = "Now playing: **" + currentSong.getInfo().title + "** (" + progress + ")\n";
     
     for (int i = 1; i < msg.getInfo().getQueue().size(); i++) {
       AudioTrack song = msg.getInfo().getQueue().get(i);

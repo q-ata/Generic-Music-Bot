@@ -24,7 +24,7 @@ public class Play extends Command {
     
     final VoiceChannel memberChannel = msg.getMember().getVoiceState().getChannel();
     if (memberChannel == null) {
-      msg.getTextChannel().sendMessage("🎵 You must be in a voice channel to use this command!").queue();
+      msg.getTextChannel().sendMessage("You must be in a voice channel to use this command!").queue();
       return;
     }
     
@@ -56,13 +56,13 @@ public class Play extends Command {
 
       @Override
       public void playlistLoaded(AudioPlaylist playlist) {
-        msg.getTextChannel().sendMessage("🎵 Playlists are not supported yet.").queue();
+        msg.getTextChannel().sendMessage("Playlists are not supported yet.").queue();
         
       }
 
       @Override
       public void noMatches() {
-        msg.getTextChannel().sendMessage("🎵 No matches for the requested song were found.").queue();
+        msg.getTextChannel().sendMessage("No matches for the requested song were found.").queue();
         
       }
 

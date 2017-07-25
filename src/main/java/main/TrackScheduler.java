@@ -19,7 +19,7 @@ public class TrackScheduler extends AudioEventAdapter {
 	    this.player.playTrack(track);
 	  }
 	  else {
-	    info.getMusicTextChannel().sendMessage("🎵 Added **" + track.getInfo().title + "** to the queue! Position: " + (info.getQueue().size() == 1 ? "Up next!" : String.valueOf(info.getQueue().size()))).queue();
+	    info.getMusicTextChannel().sendMessage("Added **" + track.getInfo().title + "** to the queue! Position: " + (info.getQueue().size() == 1 ? "Up next!" : String.valueOf(info.getQueue().size()))).queue();
 	  }
 	  info.getQueue().add(track);
   }
@@ -36,7 +36,7 @@ public class TrackScheduler extends AudioEventAdapter {
 
   @Override
   public void onTrackStart(AudioPlayer player, AudioTrack track) {
-    info.getMusicTextChannel().sendMessage("🎵 Now playing **" + track.getInfo().title + "** in **" + info.getMusicVoiceChannel().getName() + "**").queue();
+    info.getMusicTextChannel().sendMessage("Now playing **" + track.getInfo().title + "** in **" + info.getMusicVoiceChannel().getName() + "**").queue();
   }
 
   @Override
@@ -61,7 +61,7 @@ public class TrackScheduler extends AudioEventAdapter {
 
   @Override
   public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
-    info.getMusicTextChannel().sendMessage("🎵 Something went wrong with the current song, so it was skipped.").queue();
+    info.getMusicTextChannel().sendMessage("Something went wrong with the current song, so it was skipped.").queue();
   }
 
   @Override

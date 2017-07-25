@@ -1,6 +1,6 @@
 /.gradle
 /.settings
 /bin
+/src/main/java/main/Constants.java
 .classpath
 .project
-/src/main/java/main/Constants.java

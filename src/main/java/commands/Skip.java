@@ -21,7 +21,15 @@ public class Skip extends Command {
       return;
     }
     
+    int skips = Bot.getPlayers().get(msg.getGuild().getId()).getSkips();
+    skips++;
     AudioPlayerSendHandler player = Bot.getPlayers().get(msg.getGuild().getId());
+    
+    if (msg.getGuild().getAudioManager().getConnectedChannel().getMembers().size() * player.getReqSkips() > skips) {
+      msg.getTextChannel().sendMessage("Your vote to skip has been counted.");
+      return;
+    }
+    
     AudioTrack song = msg.getInfo().getQueue().get(0);
     
     msg.getTextChannel().sendMessage("The song **" + song.getInfo().title + "** was skipped!").queue();

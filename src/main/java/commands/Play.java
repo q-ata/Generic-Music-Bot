@@ -66,7 +66,13 @@ public class Play extends Command {
 
       public void playlistLoaded(AudioPlaylist playlist) {
         
-        trackScheduler.play(playlist.getTracks().get(0));
+        if (sendHandler.getSearchType() == 0) {
+          trackScheduler.play(playlist.getTracks().get(0));
+        }
+        
+        else {
+          trackScheduler.play(playlist.getTracks().get(0));
+        }
         
       }
 

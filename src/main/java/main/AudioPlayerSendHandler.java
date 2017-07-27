@@ -7,10 +7,16 @@ public class AudioPlayerSendHandler implements AudioSendHandler {
   private final AudioPlayer audioPlayer;
   private final TrackScheduler trackScheduler;
   private AudioFrame lastFrame;
+  private int skips;
+  private double reqSkips;
+  private int searchType;
 
   public AudioPlayerSendHandler(AudioPlayer audioPlayer, TrackScheduler trackScheduler) {
     this.audioPlayer = audioPlayer;
     this.trackScheduler = trackScheduler;
+    this.setSkips(0);
+    this.setReqSkips(0.5);
+    this.setSearchType(0);
   }
 
   @Override
@@ -46,5 +52,29 @@ public class AudioPlayerSendHandler implements AudioSendHandler {
 
   public TrackScheduler getTrackScheduler() {
     return trackScheduler;
+  }
+
+  public int getSkips() {
+    return skips;
+  }
+
+  public void setSkips(int skips) {
+    this.skips = skips;
+  }
+
+  public double getReqSkips() {
+    return reqSkips;
+  }
+
+  public void setReqSkips(double reqSkips) {
+    this.reqSkips = reqSkips;
+  }
+
+  public int getSearchType() {
+    return searchType;
+  }
+
+  public void setSearchType(int searchType) {
+    this.searchType = searchType;
   }
 }

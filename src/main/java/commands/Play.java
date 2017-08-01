@@ -8,6 +8,7 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
 import main.AudioPlayerSendHandler;
 import main.Bot;
+import main.Constants;
 import main.GuildPlayerInfo;
 import main.Msg;
 import main.TrackScheduler;
@@ -47,11 +48,11 @@ public class Play extends Command {
       Bot.getPlayers().put(msg.getGuild().getId(), sendHandler);
     }
     
-    if (msg.getParams().length == 1) {
+    if (msg.getParams()[0].startsWith("http")) {
       query = msg.getParams()[0];
     }
     else {
-      query = "ytsearch:" + String.join(" ", msg.getParams());
+      query = Constants.SEARCHTYPE + ":" + String.join(" ", msg.getParams());
     }
     
     msg.getGuild().getAudioManager().openAudioConnection(memberChannel);

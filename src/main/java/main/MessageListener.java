@@ -28,8 +28,5 @@ public class MessageListener extends ListenerAdapter {
   public JDA getBot() {
     return bot;
   }
-
-  public void setBot(JDA bot) {
-    this.bot = bot;
-  }
+  
 }

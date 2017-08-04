@@ -4,6 +4,7 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
 import main.AudioPlayerSendHandler;
 import main.Bot;
+import main.Constants;
 import main.Msg;
 import net.dv8tion.jda.core.JDA;
 import structure.Command;
@@ -21,15 +22,17 @@ public class Skip extends Command {
       return;
     }
     
-    int skips = Bot.getPlayers().get(msg.getGuild().getId()).getSkips();
-    skips++;
-    AudioPlayerSendHandler player = Bot.getPlayers().get(msg.getGuild().getId());
+    long skipsRequired = Math.round(msg.getGuild().getAudioManager().getConnectedChannel().getMembers().size() * Constants.SKIPPERCENTAGE);
+    msg.getInfo().setSkips(msg.getInfo().getSkips() + 1);
     
-    if (msg.getGuild().getAudioManager().getConnectedChannel().getMembers().size() * player.getReqSkips() > skips) {
-      msg.getTextChannel().sendMessage("Your vote to skip has been counted.");
+    if (skipsRequired > msg.getInfo().getSkips()) {
+      msg.getTextChannel().sendMessage("Your skip has been counted! " + String.valueOf(skipsRequired - msg.getInfo().getSkips()) + " more needed!").queue();
       return;
     }
     
+    msg.getInfo().setSkips(0);
+    
+    AudioPlayerSendHandler player = Bot.getPlayers().get(msg.getGuild().getId());
     AudioTrack song = msg.getInfo().getQueue().get(0);
     
     msg.getTextChannel().sendMessage("The song **" + song.getInfo().title + "** was skipped!").queue();

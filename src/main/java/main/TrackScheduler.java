@@ -37,18 +37,15 @@ public class TrackScheduler extends AudioEventAdapter {
   }
 
   public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
-    if (endReason.mayStartNext) {
       info.getQueue().remove(0);
       if (info.getQueue().size() > 0) {
         this.player.playTrack(info.getQueue().get(0));
       }
       else {
         info.getMusicVoiceChannel().getGuild().getAudioManager().closeAudioConnection();
+        player.destroy();
+        Bot.getPlayers().remove(info.getMusicTextChannel().getGuild().getId());
       }
-    }
-    else {
-      info.getMusicVoiceChannel().getGuild().getAudioManager().closeAudioConnection();
-    }
 
     // endReason == FINISHED: A track finished or died by an exception (mayStartNext = true).
     // endReason == LOAD_FAILED: Loading of a track failed (mayStartNext = true).
